@@ -3,7 +3,13 @@
 'use strict';
 // Set up an empty cart for use on this page.
 
+<<<<<<< HEAD
 const cart = new Cart([]);
+=======
+let cart = new Cart([]);
+
+cart.items = JSON.parse(localStorage.cart);
+>>>>>>> de2845eb0844a3ea264eadc778d163451b6e8a48
 
 let cartContents = document.getElementById('cartContents');
 let ul = document.createElement('ul');
@@ -76,16 +82,28 @@ function updateCounter() {
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
+<<<<<<< HEAD
 
 
   // let ul = document.createElement('ul');
   // TODO: Get the item and quantity from the form
+=======
+  let cartContents =document.getElementById('cartContents');
+  // let ul = document.createElement('ul');
+  cartContents.appendChild(ul);
+  // TODO: Get the item and quantity from the form
+  let arr = JSON.parse(localStorage.cart);
+>>>>>>> de2845eb0844a3ea264eadc778d163451b6e8a48
   // console.log(cart);
   for (let i = 0; i < cart.items.length; i++) {
     let li = document.createElement('li');
     ul.appendChild(li);
+<<<<<<< HEAD
     li.textContent= `${ cart.items[i].product} : ${ cart.items[i].quantity} `;
  
+=======
+    li.textContent= `${arr[i].product} : ${arr[i].quantity} `;
+>>>>>>> de2845eb0844a3ea264eadc778d163451b6e8a48
   }
   
   // TODO: Add a new element to the cartContents div with that information

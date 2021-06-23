@@ -16,6 +16,19 @@ if (localStorage.cart){
 }
 
 // Cart constructor.
+<<<<<<< HEAD
+=======
+let ul = document.createElement('ul');
+let  arr = JSON.parse(localStorage.cart);
+let cartContents =document.getElementById('cartContents');
+cartContents.appendChild(ul);
+
+for (let i = 0; i < arr.length; i++) {
+  let li = document.createElement('li');
+  ul.appendChild(li);
+  li.textContent= `${arr[i].product} : ${arr[i].quantity} `;
+}
+>>>>>>> de2845eb0844a3ea264eadc778d163451b6e8a48
 
 const Cart = function(items) {
   // this.items is an array of CartItem instances.
@@ -76,3 +89,4 @@ function generateCatalog() {
 
 // Initialize the app by creating the big list of products with images and names
 generateCatalog();
+
