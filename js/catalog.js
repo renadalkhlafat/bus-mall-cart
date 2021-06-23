@@ -65,11 +65,11 @@ function updateCartPreview(item,qty) {
   let ul = document.createElement('ul');
   cartContents.appendChild(ul);
   // TODO: Get the item and quantity from the form
-  for (let index = 0; index < cart.items.length; index++) {
+  
     let li = document.createElement('li');
     ul.appendChild(li);
-    li.textContent= `${cart.items[index].qty} : ${cart.items[index].name} `;
-  }
+    li.textContent= `Item : ${item} , Quantity: ${qty} .`;
+  
   // TODO: Add a new element to the cartContents div with that information
   
 }
