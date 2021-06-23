@@ -8,7 +8,9 @@ let cart;
 
 function loadCart() {
   const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  console.log(cartItems)
   cart = new Cart(cartItems);
+  
 }
 
 // Make magic happen --- re-pull the Cart, clear out the screen and re-draw it
@@ -20,6 +22,7 @@ function renderCart() {
 
 // TODO: Remove all of the rows (tr) in the cart table (tbody)
 function clearCart() {
+
   for (let index = 0; index < cart.length; index++) {
     table.deleteRow(index);
   }

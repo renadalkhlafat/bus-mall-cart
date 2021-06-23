@@ -1,9 +1,22 @@
 /* global Product, Cart */
 
 'use strict';
-
 // Set up an empty cart for use on this page.
+
 const cart = new Cart([]);
+
+let cartContents = document.getElementById('cartContents');
+let ul = document.createElement('ul');
+cartContents.appendChild(ul);
+
+if (localStorage.cart){
+  let lStorageCart = JSON.parse(localStorage.cart);
+  for (let i = 0 ; i < lStorageCart.length ; i++){
+    cart.items = [];
+    cart.addItem(lStorageCart[i].product,lStorageCart[i].quantity)
+  }
+}
+
 
 // On screen load, we call this method to put all of the busmall options
 // (the things in the Product.allProducts array) into the drop down list.
@@ -15,7 +28,6 @@ function populateForm() {
     let option=document.createElement('option');
     option.textContent=Product.allProducts[i].name;
     selectElement.appendChild(option);
-
   }
 
 }
@@ -33,8 +45,9 @@ function handleSubmit(event) {
   // Do all the things ...
   addSelectedItemToCart(event);
   cart.saveToLocalStorage();
+  // cart.saveToLocalStorage();
   updateCounter();
-  updateCartPreview(addSelectedItemToCart(event)[0],addSelectedItemToCart(event)[1]);
+  updateCartPreview();
 
 }
 
@@ -49,26 +62,31 @@ function addSelectedItemToCart(e) {
   // TODO: using those, add one item to the Cart
   cart.addItem(pickedItem,qty);
   // console.log(cart);
-  return [pickedItem,qty];
 }
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
 function updateCounter() {
   let updateCount =document.getElementById('itemCount');
-  updateCount =cart.items.length;
+  let count = JSON.parse(localStorage.cart).length;
+  updateCount.textContent = count;
+  // console.log(count); // the number of items is correct
+  // updateCount =cart.items.length;
   // console.log(updateCount);
 }
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
-function updateCartPreview(item,qty) {
-  let cartContents =document.getElementById('cartContents');
-  let ul = document.createElement('ul');
-  cartContents.appendChild(ul);
+function updateCartPreview() {
+
+
+  // let ul = document.createElement('ul');
   // TODO: Get the item and quantity from the form
-  
+  // console.log(cart);
+  for (let i = 0; i < cart.items.length; i++) {
     let li = document.createElement('li');
     ul.appendChild(li);
-    li.textContent= `Item : ${item} , Quantity: ${qty} .`;
+    li.textContent= `${ cart.items[i].product} : ${ cart.items[i].quantity} `;
+ 
+  }
   
   // TODO: Add a new element to the cartContents div with that information
   
