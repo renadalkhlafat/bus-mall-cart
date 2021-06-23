@@ -1,29 +1,15 @@
 /* global Product, Cart */
 
 'use strict';
+
 // Set up an empty cart for use on this page.
-
-<<<<<<< HEAD
-const cart = new Cart([]);
-=======
 let cart = new Cart([]);
-
-cart.items = JSON.parse(localStorage.cart);
->>>>>>> de2845eb0844a3ea264eadc778d163451b6e8a48
-
-let cartContents = document.getElementById('cartContents');
-let ul = document.createElement('ul');
-cartContents.appendChild(ul);
-
-if (localStorage.cart){
-  let lStorageCart = JSON.parse(localStorage.cart);
-  for (let i = 0 ; i < lStorageCart.length ; i++){
-    cart.items = [];
-    cart.addItem(lStorageCart[i].product,lStorageCart[i].quantity)
-  }
+if(localStorage.cart){
+cart.items=JSON.parse(localStorage.cart);
 }
 
 
+// cart.items = JSON.parse(localStorage.cart);
 // On screen load, we call this method to put all of the busmall options
 // (the things in the Product.allProducts array) into the drop down list.
 function populateForm() {
@@ -73,8 +59,9 @@ function addSelectedItemToCart(e) {
 // TODO: Update the cart count in the header nav with the number of items in the Cart
 function updateCounter() {
   let updateCount =document.getElementById('itemCount');
-  let count = JSON.parse(localStorage.cart).length;
-  updateCount.textContent = count;
+  // let count = JSON.parse(localStorage.cart).length;
+  // updateCount.textContent = count;
+  updateCount.textContent= cart.items.length;
   // console.log(count); // the number of items is correct
   // updateCount =cart.items.length;
   // console.log(updateCount);
@@ -82,30 +69,23 @@ function updateCounter() {
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
-<<<<<<< HEAD
-
-
-  // let ul = document.createElement('ul');
-  // TODO: Get the item and quantity from the form
-=======
   let cartContents =document.getElementById('cartContents');
-  // let ul = document.createElement('ul');
-  cartContents.appendChild(ul);
+  let ul = document.createElement('ul');
+
   // TODO: Get the item and quantity from the form
-  let arr = JSON.parse(localStorage.cart);
->>>>>>> de2845eb0844a3ea264eadc778d163451b6e8a48
-  // console.log(cart);
-  for (let i = 0; i < cart.items.length; i++) {
-    let li = document.createElement('li');
-    ul.appendChild(li);
-<<<<<<< HEAD
-    li.textContent= `${ cart.items[i].product} : ${ cart.items[i].quantity} `;
- 
-=======
-    li.textContent= `${arr[i].product} : ${arr[i].quantity} `;
->>>>>>> de2845eb0844a3ea264eadc778d163451b6e8a48
-  }
-  
+  // // let arr = JSON.parse(localStorage.cart);
+  let selectionOptions = document.getElementById('items');
+  let selectedItem = selectionOptions.options[selectionOptions.selectedIndex].value;
+  let selectedItemQuintity = document.getElementById('quantity').value;
+  cartContents.appendChild(ul);
+  // // for (let i = 0; i < cart.items.length; i++) {
+  // //   let li = document.createElement('li');
+  // //   ul.appendChild(li);
+  // //   li.textContent= `${arr[i].product} : ${arr[i].quantity} `;
+  // // }
+  let li = document.createElement('li');
+  ul.appendChild(li);
+  li.textContent =  `${selectedItemQuintity} : ${selectedItem}`
   // TODO: Add a new element to the cartContents div with that information
   
 }

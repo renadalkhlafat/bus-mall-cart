@@ -1,34 +1,16 @@
 'use strict';
 
-
-
-cartContents.appendChild(ul);
-
-
-if (localStorage.cart){
-  let  arr = JSON.parse(localStorage.cart);
-  console.log(cartContents);
-  for (let i = 0; i < arr.length; i++) {
-    let li = document.createElement('li');
-    ul.appendChild(li);
-    li.textContent= `${arr[i].product} : ${arr[i].quantity} `;
-  }
-}
-
 // Cart constructor.
-<<<<<<< HEAD
-=======
-let ul = document.createElement('ul');
-let  arr = JSON.parse(localStorage.cart);
-let cartContents =document.getElementById('cartContents');
-cartContents.appendChild(ul);
+// let ul = document.createElement('ul');
+// let  arr = JSON.parse(localStorage.cart);
+// let cartContents =document.getElementById('cartContents');
+// cartContents.appendChild(ul);
 
-for (let i = 0; i < arr.length; i++) {
-  let li = document.createElement('li');
-  ul.appendChild(li);
-  li.textContent= `${arr[i].product} : ${arr[i].quantity} `;
-}
->>>>>>> de2845eb0844a3ea264eadc778d163451b6e8a48
+// for (let i = 0; i < arr.length; i++) {
+//   let li = document.createElement('li');
+//   ul.appendChild(li);
+//   li.textContent= `${arr[i].product} : ${arr[i].quantity} `;
+// }
 
 const Cart = function(items) {
   // this.items is an array of CartItem instances.
