@@ -3,7 +3,10 @@
 'use strict';
 
 // Set up an empty cart for use on this page.
-const cart = new Cart([]);
+
+let cart = new Cart([]);
+
+cart.items = JSON.parse(localStorage.cart);
 
 // On screen load, we call this method to put all of the busmall options
 // (the things in the Product.allProducts array) into the drop down list.
@@ -33,8 +36,9 @@ function handleSubmit(event) {
   // Do all the things ...
   addSelectedItemToCart(event);
   cart.saveToLocalStorage();
+  // cart.saveToLocalStorage();
   updateCounter();
-  updateCartPreview(addSelectedItemToCart(event)[0],addSelectedItemToCart(event)[1]);
+  updateCartPreview();
 
 }
 
@@ -49,27 +53,32 @@ function addSelectedItemToCart(e) {
   // TODO: using those, add one item to the Cart
   cart.addItem(pickedItem,qty);
   // console.log(cart);
-  return [pickedItem,qty];
 }
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
 function updateCounter() {
   let updateCount =document.getElementById('itemCount');
-  updateCount =cart.items.length;
+  let count = JSON.parse(localStorage.cart).length;
+  updateCount.textContent = count;
+  // console.log(count); // the number of items is correct
+  // updateCount =cart.items.length;
   // console.log(updateCount);
 }
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
-function updateCartPreview(item,qty) {
+function updateCartPreview() {
   let cartContents =document.getElementById('cartContents');
-  let ul = document.createElement('ul');
+  // let ul = document.createElement('ul');
   cartContents.appendChild(ul);
   // TODO: Get the item and quantity from the form
-  for (let index = 0; index < cart.items.length; index++) {
+  let arr = JSON.parse(localStorage.cart);
+  // console.log(cart);
+  for (let i = 0; i < cart.items.length; i++) {
     let li = document.createElement('li');
     ul.appendChild(li);
-    li.textContent= `${cart.items[index].qty} : ${cart.items[index].name} `;
+    li.textContent= `${arr[i].product} : ${arr[i].quantity} `;
   }
+  
   // TODO: Add a new element to the cartContents div with that information
   
 }

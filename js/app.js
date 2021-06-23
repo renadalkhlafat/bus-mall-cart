@@ -1,6 +1,17 @@
 'use strict';
 
 // Cart constructor.
+let ul = document.createElement('ul');
+let  arr = JSON.parse(localStorage.cart);
+let cartContents =document.getElementById('cartContents');
+cartContents.appendChild(ul);
+
+for (let i = 0; i < arr.length; i++) {
+  let li = document.createElement('li');
+  ul.appendChild(li);
+  li.textContent= `${arr[i].product} : ${arr[i].quantity} `;
+}
+
 const Cart = function(items) {
   // this.items is an array of CartItem instances.
   this.items = items;
@@ -60,3 +71,4 @@ function generateCatalog() {
 
 // Initialize the app by creating the big list of products with images and names
 generateCatalog();
+
